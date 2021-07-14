@@ -48,7 +48,7 @@ jobs:
         run: |
           VERSION=${{ github.event.inputs.version }}
           grep -rlZ "version:[^P]*# VERSION" ./helm/Chart.yaml | xargs -0 sed -i "s/version:[^P]*# VERSION/version: ${VERSION} # VERSION/g"
-          sed -ie "s/v0.1.10/${VERSION}/g" ./helm/README.md
+          sed -i "s/v0.1.10/${VERSION}/g" ./helm/README.md
           make prepare_artifacts
 
       - name: Run GoReleaser
