@@ -7,7 +7,6 @@ release:
     name: flyte
   draft: false
   prerelease: auto
-  discussion_category_name: General
   name_template: "Flyte v{{.Version}} milestone release"
   disable: false
   extra_files:
