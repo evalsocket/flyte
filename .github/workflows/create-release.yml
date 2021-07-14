@@ -46,7 +46,7 @@ jobs:
           FLYTE_BOT_PAT: ${{ secrets.FLYTE_BOT_PAT }}
           VERSION: ${{ github.event.inputs.version }}
         run: |
-          VERSION=$(echo $GITHUB_REF | sed 's#.*/##')
+          VERSION=${{ github.event.inputs.version }}
           grep -rlZ "version:[^P]*# VERSION" ./helm/Chart.yaml | xargs -0 sed -i "s/version:[^P]*# VERSION/version: ${VERSION} # VERSION/g"
           make helm
           make prepare_artifacts
@@ -64,6 +64,7 @@ jobs:
           FLYTE_BOT_PAT: ${{ secrets.FLYTE_BOT_PAT }}
           VERSION: ${{ github.event.inputs.version }}
         run: |
+          VERSION=${{ github.event.inputs.version }}
           grep -rlZ "version:[^P]*# VERSION" ./helm/Chart.yaml | xargs -0 sed -i "s/version:[^P]*# VERSION/version: ${VERSION} # VERSION/g"
           # Commit Chart registry to github gh-pages
           bin/cr index --owner evalsocket --git-repo flyte --charts-repo="https://evalsocket.github.io/flyte" --push --token=${FLYTE_BOT_PAT} --release-name-template="{{ .Version }}"
