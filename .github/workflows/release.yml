@@ -52,5 +52,5 @@ jobs:
           VERSION=$(echo $GITHUB_REF | sed 's#.*/##')
           grep -rlZ "version:[^P]*# VERSION" ./helm/Chart.yaml | xargs -0 sed -i "s/version:[^P]*# VERSION/version: ${VERSION} # VERSION/g"
           # Commit Chart registry to github gh-pages
-          bin/cr index --owner flyteorg --git-repo flyte --charts-repo="https://flyteorg.github.io/flyte" --push --token=${FLYTE_BOT_PAT} --release-name-template="{{ .Version }}"
+          bin/cr index --owner evalsocket --git-repo flyte --charts-repo="https://evalsocket.github.io/flyte" --push --token=${FLYTE_BOT_PAT} --release-name-template="{{ .Version }}"
 
